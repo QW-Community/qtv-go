@@ -768,8 +768,8 @@ func (ds *dStream) sanitizeClientName() (err error) {
 	}
 
 outer:
-	for {
-		prefixed := fmt.Sprintf("(%v)%-.25s", randomString(8), new)
+	for i := 1; i < 255; i++ {
+		prefixed := fmt.Sprintf("(%v)%-.25s", i, new)
 
 		us.assertMutexIsLocked()
 		for _, d := range us.linkedDs {
